@@ -15,7 +15,7 @@ public class Main {
         for (char c : a) b[c - 'A']++;
 
         int d = 0;
-        char ans = 'A';
+        char ans = ' ';
 
         for (int i = 0; i < b.length; i++) {
             if (b[i] > d) {
