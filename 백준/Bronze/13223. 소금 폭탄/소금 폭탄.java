@@ -3,15 +3,23 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String[] c = sc.next().split(":");
-        String[] d = sc.next().split(":");
-
-        int cs = Integer.parseInt(c[0]) * 3600 + Integer.parseInt(c[1]) * 60 + Integer.parseInt(c[2]);
-        int ds = Integer.parseInt(d[0]) * 3600 + Integer.parseInt(d[1]) * 60 + Integer.parseInt(d[2]);
-        int as = ds - cs;
-
-        if (as <= 0) as += 24 * 3600;
-
-        System.out.printf("%02d:%02d:%02d", as / 3600, (as % 3600) / 60, as % 60);
+        String[] a = sc.nextLine().split(":");
+        String[] b = sc.nextLine().split(":");
+        
+        int s = Integer.parseInt(b[2]) - Integer.parseInt(a[2]);
+        int m = Integer.parseInt(b[1]) - Integer.parseInt(a[1]);
+        int h = Integer.parseInt(b[0]) - Integer.parseInt(a[0]);
+        
+        if (s < 0) {
+            m--;
+            s += 60;
+        }
+        if (m < 0) {
+            h--;
+            m += 60;
+        }
+        if (h < 0 || h + m + s == 0) h += 24;
+        
+        System.out.printf("%02d:%02d:%02d", h, m, s);
     }
 }
