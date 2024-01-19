@@ -11,25 +11,25 @@ public class Main {
         boolean[] row = new boolean[M];
         boolean[] column = new boolean[N];
 
-        int rowCount = 0;
-        int columnCount = 0;
+        int rowCount = M;
+        int columnCount = N;
 
         for (int i = 0; i < N; i++) {
             char[] line = scan.next().toCharArray();
             for (int j = 0; j < M; j++) {
                 if (line[j] == 'X') {
-                    if (!column[i]) {
-                        column[i] = true;
-                        columnCount++;
-                    }
                     if (!row[j]) {
                         row[j] = true;
-                        rowCount++;
+                        rowCount--;
+                    }
+                    if (!column[i]) {
+                        column[i] = true;
+                        columnCount--;
                     }
                 }
             }
         }
 
-        System.out.print(Math.max(M - rowCount, N - columnCount));
+        System.out.print(Math.max(rowCount, columnCount));
     }
 }
