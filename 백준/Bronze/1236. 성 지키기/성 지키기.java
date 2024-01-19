@@ -8,21 +8,13 @@ public class Main {
         int N = scan.nextInt();
         int M = scan.nextInt();
 
-        char[][] square = new char[N][M];
-
-        for (int i = 0; i < N; i++) {
-            String line = scan.next();
-            for (int j = 0; j < M; j++) {
-                square[i][j] = line.charAt(j);
-            }
-        }
-
         boolean[] width = new boolean[M];
         boolean[] height = new boolean[N];
 
         for (int i = 0; i < N; i++) {
+            char[] line = scan.next().toCharArray();
             for (int j = 0; j < M; j++) {
-                if (square[i][j] == 'X') {
+                if (line[j] == 'X') {
                     height[i] = true;
                     width[j] = true;
                 }
@@ -30,13 +22,14 @@ public class Main {
         }
 
         int wCount = 0;
+        int hCount = 0;
+
         for (int i = 0; i < M; i++) {
             if (!width[i]) {
                 wCount++;
             }
         }
 
-        int hCount = 0;
         for (int i = 0; i < N; i++) {
             if (!height[i]) {
                 hCount++;
