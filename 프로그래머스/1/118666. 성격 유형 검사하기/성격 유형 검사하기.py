@@ -11,12 +11,10 @@ def solution(survey, choices):
     }
     
     for i, s in enumerate(survey):
-        if choices[i] == 4:
-            continue
-        elif choices[i] < 4:
-            s_dict[s[0]] = s_dict[s[0]] + ((choices[i] * -1) + 4)
-        else:
-            s_dict[s[1]] = s_dict[s[1]] + (choices[i] - 4)
+        if choices[i] < 4:
+            s_dict[s[0]] += ((choices[i] * -1) + 4)
+        elif choices[i] > 4:
+            s_dict[s[1]] += (choices[i] - 4)
     
     answer = ""
     
