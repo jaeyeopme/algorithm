@@ -3,7 +3,7 @@ def solution(numbers):
     # 최대 길이 100이하 100^2 = 10000
     answer = []
     
-    for i in range(len(numbers) - 1):
+    for i in range(len(numbers)):
         for j in range(i + 1, len(numbers)):
             answer.append(numbers[i] + numbers[j])
             
