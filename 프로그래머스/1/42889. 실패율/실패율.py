@@ -17,6 +17,7 @@ def solution(N, stages):
             fails[s] = 0
         else:
             fails[s] = challenger[s] / total
+            # 전체 인원에서 이전 스테이지까지만 도달한 인원을 배제
             total -= challenger[s]
 
     return sorted(fails, key=lambda v: fails[v], reverse=True)
