@@ -1,6 +1,4 @@
 def solution(N, stages):
-    answer = {}
-    
     # 스테이지별 도전자 수(N 스테이지를 클리어하면 N + 1)
     challenger = [0] * (N + 2)
     
