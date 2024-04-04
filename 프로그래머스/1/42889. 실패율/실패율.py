@@ -1,15 +1,22 @@
 def solution(N, stages):
     answer = {}
-
-    for i in range(1, N + 1):
-        a, b = 0, 0
-
-        for j in stages:
-            if i == j:
-                a += 1
-            if i <= j:
-                b += 1
+    
+    # 스테이지별 도전자 수(N 스테이지를 클리어하면 N + 1)
+    challenger = [0] * (N + 2)
+    
+    for stage in stages:
+        challenger[stage] += 1
         
-        answer[i] = b if b == 0 else a / b
+    # 전체 인원
+    total = len(stages)
+    # 스테이지별 실패율
+    fails = {}
 
-    return [key for key, _ in sorted(answer.items(), key=lambda x: x[1], reverse=True)]
+    for s in range(1, N + 1):
+        if challenger[s] == 0:
+            fails[s] = 0
+        else:
+            fails[s] = challenger[s] / total
+            total -= challenger[s]
+
+    return sorted(fails, key=lambda v: fails[v], reverse=True)
