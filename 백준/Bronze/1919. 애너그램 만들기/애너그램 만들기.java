@@ -1,17 +1,19 @@
 import java.util.Scanner;
 
 public class Main {
+    
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        char[] a = sc.nextLine().toCharArray();
-        char[] b = sc.nextLine().toCharArray();
-        int[] c = new int[26];
+        Scanner scan = new Scanner(System.in);
+        char[] a1 = scan.nextLine().toCharArray();
+        char[] a2 = scan.nextLine().toCharArray();
+        int[] a3 = new int[26];
         int answer = 0;
-
-        for (char d : a) c[d - 'a']++;
-        for (char d : b) c[d - 'a']--;
-        for (int d : c) answer += Math.abs(d);
-
-        System.out.println(answer);
+        
+        for (char c : a1) a3[c - 'a'] += 1;
+        for (char c : a2) a3[c - 'a'] -= 1;
+        for (int i : a3) answer += Math.abs(i);
+        
+        System.out.print(answer);
     }
+    
 }
