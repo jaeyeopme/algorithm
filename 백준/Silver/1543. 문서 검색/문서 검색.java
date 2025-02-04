@@ -1,12 +1,19 @@
 import java.util.Scanner;
 
 public class Main {
+    
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String a = sc.nextLine();
-        String b = sc.nextLine();
-        int c = a.length() - a.replace(b, "").length();
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        String find = scan.nextLine();
+        int ans = 0;
         
-        System.out.print(c / b.length());
+        while (str.contains(find)) {
+            str = str.substring(str.indexOf(find) + find.length());
+            ans++;
+        }
+        
+        System.out.print(ans);
     }
+    
 }
