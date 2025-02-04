@@ -4,13 +4,13 @@ public class Main {
     
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        char[] a1 = scan.nextLine().toCharArray();
-        char[] a2 = scan.nextLine().toCharArray();
+        String s1 = scan.nextLine();
+        String s2 = scan.nextLine();
         int[] a3 = new int[26];
         int answer = 0;
         
-        for (char c : a1) a3[c - 'a'] += 1;
-        for (char c : a2) a3[c - 'a'] -= 1;
+        for (int i = 0; i < s1.length(); i++) a3[s1.charAt(i) - 'a'] += 1;
+        for (int i = 0; i < s2.length(); i++) a3[s2.charAt(i) - 'a'] -= 1;
         for (int i : a3) answer += Math.abs(i);
         
         System.out.print(answer);
