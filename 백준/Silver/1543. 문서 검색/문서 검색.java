@@ -7,12 +7,16 @@ public class Main {
         String str = scan.nextLine();
         String find = scan.nextLine();
         int ans = 0;
-        
-        while (str.contains(find)) {
-            str = str.substring(str.indexOf(find) + find.length());
+
+        while (true) {
+            int findIndex = str.indexOf(find);
+            if (findIndex < 0) break;
+            
+            int startIndex = findIndex + find.length();
+            str = str.substring(startIndex);
             ans++;
         }
-        
+
         System.out.print(ans);
     }
     
