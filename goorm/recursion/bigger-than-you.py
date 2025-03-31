@@ -14,4 +14,5 @@ def bfs(num):
     for i in range(N):
         bfs(A[i])
 
+
 print(bfs(0))
