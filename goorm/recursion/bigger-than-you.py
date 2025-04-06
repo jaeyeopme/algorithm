@@ -1,18 +1,19 @@
+def dfs(num):
+    if num > K:
+        global ans
+        ans = min(ans, num)
+        return
+
+    for i in range(N):
+        next_num = num * 10 + A[i]
+        if next_num:
+            dfs(next_num)
+
+
 N = int(input())
 A = list(map(int, input().split()))
 K = int(input())
-ans = 0
+ans = float("inf")
 
-
-def bfs(num):
-    global ans
-    sum = num + ans
-
-    if sum > ans:
-        ans = min(ans, sum)
-
-    for i in range(N):
-        bfs(A[i])
-
-
-print(bfs(0))
+dfs(0)
+print(ans)
