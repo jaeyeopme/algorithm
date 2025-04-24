@@ -1,39 +1,38 @@
+def is_same(c1, c2, is_rg):
+    if not is_rg:
+        return c1 == c2
+    return c1 in ["R", "G"] and c2 in ["R", "G"] or ("B" == c1 == c2)
+
+
 def dfs(i, j, is_rg=False):
     stack = [(i, j)]
     visited[i][j] = True
 
     while stack:
-        (px, py) = stack.pop()
+        px, py = stack.pop()
+        current_color = grid[px][py]
 
-        for ix, iy in search_points:
-            x, y = px + ix, py + iy
+        for dx, dy in directions:
+            nx, ny = px + dx, py + dy
 
-            if not (0 <= x < N and 0 <= y < N):
+            if not (0 <= nx < N and 0 <= ny < N) or visited[nx][ny]:
                 continue
 
-            if not visited[x][y] and grid[px][py] == grid[x][y]:
-                visited[x][y] = True
-                stack.append((x, y))
-                continue
+            neighbor_color = grid[nx][ny]
 
-            if (
-                is_rg
-                and not visited[x][y]
-                and (grid[px][py] in ["R", "G"])
-                and (grid[x][y] in ["R", "G"])
-            ):
-                visited[x][y] = True
-                stack.append((x, y))
+            if is_same(current_color, neighbor_color, is_rg):
+                visited[nx][ny] = True
+                stack.append((nx, ny))
 
 
 N = int(input())
 grid = [list(input()) for _ in range(N)]
+directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-visited = [[False] * N for _ in range(N)]
-search_points = [(0, -1), (1, 0), (0, 1), (-1, 0)]
 count = 0
 rg_count = 0
 
+visited = [[False] * N for _ in range(N)]
 for i in range(N):
     for j in range(N):
         if not visited[i][j]:
@@ -41,7 +40,6 @@ for i in range(N):
             dfs(i, j)
 
 visited = [[False] * N for _ in range(N)]
-
 for i in range(N):
     for j in range(N):
         if not visited[i][j]:
