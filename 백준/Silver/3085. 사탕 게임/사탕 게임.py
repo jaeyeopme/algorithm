@@ -33,7 +33,7 @@ def check_col(j):
 
 def exchange(a, b):
     global i, j
-    
+
     temp = bomboni[i][j]
     bomboni[i][j] = bomboni[a][b]
     bomboni[a][b] = temp
@@ -51,8 +51,8 @@ for i in range(N):
         # left
         if -1 < j - 1 and bomboni[i][j] != bomboni[i][j - 1]:
             exchange(i, j - 1)
-            check_col(j - 1)
             check_col(j)
+            check_col(j - 1)
             check_row(i)
             exchange(i, j - 1)
 
@@ -67,8 +67,8 @@ for i in range(N):
         # top
         if -1 < i - 1 and bomboni[i][j] != bomboni[i - 1][j]:
             exchange(i - 1, j)
-            check_row(i - 1)
             check_row(i)
+            check_row(i - 1)
             check_col(j)
             exchange(i - 1, j)
 
