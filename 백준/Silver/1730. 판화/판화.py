@@ -3,46 +3,44 @@ import sys
 input = sys.stdin.readline
 
 
-def mark(y, x):
-    global lattice
+def mark(y, x, cmd):
+    global grid
 
-    if lattice[y][x] == ".":
-        if c == "U" or c == "D":
-            lattice[y][x] = "|"
-        else:
-            lattice[y][x] = "-"
+    if grid[y][x] == "+": return
+    current = grid[y][x]
 
-    if lattice[y][x] == "-" and (c == "U" or c == "D"):
-        lattice[y][x] = "+"
+    if cmd in vertical:
+        if current == "-":
+            grid[y][x] = "+"
+            return
+        grid[y][x] = "|"
+        return
 
-    if lattice[y][x] == "|" and (c == "L" or c == "R"):
-        lattice[y][x] = "+"
+    if current == "|":
+        grid[y][x] = "+"
+        return
+    grid[y][x] = "-"
 
 
 N = int(input())
-commands = list(input())
-direc = {
-    "U": (-1, 0),
-    "D": (1, 0),
-    "L": (0, -1),
-    "R": (0, 1),
-}
-lattice = [["."] * N for _ in range(N)]
+commands = input().strip()
+grid = [["."] * N for _ in range(N)]
 
-current = (0, 0)
-for c in commands:
-    if c not in direc:
-        continue
-    cy, cx = current
-    dy, dx = direc[c]
-    ny, nx = cy + dy, cx + dx
+dy = {'U': -1, 'D': 1, 'L': 0, 'R': 0}
+dx = {'U': 0, 'D': 0, 'L': -1, 'R': 1}
+vertical = {"U", "D"}
 
-    if -1 < cx < N and -1 < cy < N and -1 < nx < N and -1 < ny < N:
+y, x = 0, 0
+
+for cmd in commands:
+    ny, nx = y + dy[cmd], x + dx[cmd]
+
+    if -1 < ny < N and -1 < nx < N:
         # current
-        mark(cy, cx)
+        mark(y, x, cmd)
         # next
-        mark(ny, nx)
+        mark(ny, nx, cmd)
         # swap
-        current = ny, nx
+        y, x = ny, nx
 
-[print(*x, sep="") for x in lattice]
+[print("".join(row)) for row in grid]
