@@ -10,11 +10,10 @@ merged_scores = []
 chips = {}
 
 for _ in range(N):
-    line = input().split()
-    N, C = line[0], int(line[1])
+    N, C = input().split()
+    C = int(C)
 
-    if C < X * 0.05:
-        continue
+    if C < X * 0.05: continue
 
     chips[N] = 0
 
@@ -23,10 +22,10 @@ for _ in range(N):
         scores[value] = N
         merged_scores.append(value)
 
-last_scores = sorted(merged_scores, reverse=True)[:14]
+sorted_scores = sorted(merged_scores, reverse=True)[:14]
 
-for s in last_scores:
-    name = scores[s]
+for score in sorted_scores:
+    name = scores[score]
     chips[name] += 1
 
 for name in sorted(chips.keys()):
