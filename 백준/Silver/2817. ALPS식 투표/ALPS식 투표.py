@@ -22,9 +22,7 @@ for _ in range(N):
         scores[value] = N
         merged_scores.append(value)
 
-sorted_scores = sorted(merged_scores, reverse=True)[:14]
-
-for score in sorted_scores:
+for score in sorted(merged_scores, reverse=True)[:14]:
     name = scores[score]
     chips[name] += 1
 
