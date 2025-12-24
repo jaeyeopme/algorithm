@@ -4,8 +4,7 @@ input = sys.stdin.readline
 N = int(input())
 X = list(map(int, input().split()))
 
-sorted_x = sorted(set(X))
-x_count = {}
+sorted_x, x_count = sorted(set(X)), {}
 
 for i in range(len(sorted_x)):
     value = sorted_x[i]
