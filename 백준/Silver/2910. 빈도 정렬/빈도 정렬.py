@@ -11,6 +11,6 @@ m_count = defaultdict(int)
 for m in M:
     m_count[m] += 1
 
-for m in sorted(m_count.keys(), key=lambda x: m_count[x], reverse=True):
+for m in sorted(m_count.keys(), key=lambda x: -m_count[x]):
     for _ in range(m_count[m]):
         print(m, end=' ')
