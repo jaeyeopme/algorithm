@@ -3,23 +3,15 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-L = sorted(list(map(int, input().split())))
-S = float("inf")
-ans = []
+L = sorted(list(map(int, input().split())), key=lambda x: abs(x))
+S = float('inf')
+ans = ()
 
-l, r = 0, N - 1
+for i in range(N - 1):
+    s = L[i] + L[i + 1]
 
-while l < r:
-    v = L[l] + L[r]
-    t = abs(v)
+    if abs(s) < S:
+        S = abs(s)
+        ans = [L[i], L[i + 1]]
 
-    if t < S:
-        S = t
-        ans = [L[l], L[r]]
-
-    if v < 0:
-        l += 1
-    else:
-        r -= 1
-
-print(*ans)
+print(*sorted(ans))
