@@ -4,12 +4,12 @@ input = sys.stdin.readline
 
 N, K = map(int, input().split())
 circle = list(range(1, N + 1))
+current = 0
 ans = []
-next = 0
 
 while circle:
-    step = next + (K - 1)
-    next = step % len(circle)
-    ans.append(circle.pop(next))
+    actual = (current + (K - 1)) % len(circle)
+    ans.append(str(circle.pop(actual)))
+    current = actual
 
-print("<" + ", ".join(map(str, ans)) + ">")
+print(f"<{', '.join(ans)}>")
